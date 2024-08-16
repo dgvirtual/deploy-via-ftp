@@ -1,0 +1,14 @@
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/dgvirtual/deploy-via-ftp"
+        }
+    ],
+    "require": {
+        "dgvirtual/deploy-via-ftp": "dev-master"
+    },
+    "scripts": {
+        "deploy": "./vendor/dgvirtual/deploy-via-ftp/src/deploy.sh"
+    }
+}

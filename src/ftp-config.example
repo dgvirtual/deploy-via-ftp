@@ -1,0 +1,25 @@
+# .ftp_config
+# your ftp username
+USERNAME="myname"
+# ftp password
+PASSWORD="mySecretPass"
+# ftp protocol (ftps and ftp currently supported)
+PROTOCOL="ftps"
+# port used by the server
+PORT=21
+# server address (in case of ftps should be the same that 
+# the ssl certificate is issued for
+SERVER="ftp.example.com"
+# Remote directories
+REMOTE_APP="/myproject/app"
+REMOTE_VENDOR="/myproject/vendor"
+REMOTE_PUBLIC_HTML="/public_html"
+# options for excluding files/directories from sync; things that rarely
+# change, should not be in production, or that should be updated manually
+APP_EXCLUDE_GLOBS=""
+VENDOR_EXCLUDE_GLOBS=""
+PUBLIC_EXCLUDE_GLOBS="--exclude-glob='uploads/*' --exclude-glob='index.php'"
+# Local directories
+LOCAL_APP="app"
+LOCAL_VENDOR="vendor"
+LOCAL_PUBLIC_HTML="public"
