@@ -2,13 +2,12 @@
 
 # Check if the .ftp_config file already exists
 if [[ -f ./.ftp_config ]]; then
-  echo ".ftp_config file already exists. Exiting."
-  exit 0
+  echo ".ftp_config file already exists, will not be created anew."
+else
+  # Copy the example config file to .ftp_config
+  cp ./vendor/dgvirtual/deploy-via-ftp/src/ftp-config.example .ftp_config
+  echo ".ftp_config file created from ftp-config.example."
 fi
-
-# Copy the example config file to .ftp_config
-cp ./vendor/dgvirtual/deploy-via-ftp/src/ftp-config.example .ftp_config
-echo ".ftp_config file created from ftp-config.example."
 
 # Ask the user if they want to add .ftp_config to .gitignore
 if [[ -f ./.gitignore ]]; then

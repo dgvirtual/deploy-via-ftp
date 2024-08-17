@@ -144,8 +144,10 @@ for target in "$@"; do
       shift # Move to the next argument (skip the file path)
       ;;
     *)
-      echo "Invalid argument: '$target'"
-      exit 1
+      if ! [[ -f ./$target ]]; then
+        echo "Invalid argument: '$target'"
+        exit 1
+      fi
       ;;
   esac
 done
