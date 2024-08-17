@@ -2,13 +2,14 @@
 
 # Check if .ftp_config file exists in the current directory
 if [[ ! -f ./.ftp_config ]]; then
-  echo ".ftp_config file not found."
+  echo ".ftp_config file, where script configuration should be stored, is not found."
   read -p "Do you want to create the .ftp_config file from the example? (y/n): " create_config
   if [[ "$create_config" == "y" || "$create_config" == "Y" ]]; then
     ./vendor/dgvirtual/deploy-via-ftp/src/install.sh
+    exit 0
   else
     echo "Cannot proceed without .ftp_config. Exiting."
-    exit 1
+    exit 0
   fi
 fi
 
@@ -111,7 +112,7 @@ if [[ $# -eq 0 ]]; then
   echo "  onefile [local_path]: Upload a single file using curl."
   echo "  e.g.:"
   echo "  ./deploy.sh onefile app/Controllers/Test.php"
-  exit 1
+  exit 0
 fi
 
 # Process each argument provided to the script
