@@ -1,6 +1,7 @@
 # Deploy via FTP
 
-This is a simple script package for deploying PHP projects to a shared hosting server via FTP or FTPS. It allows you to synchronize directories or upload individual files using `lftp` and `curl`.
+This is a simple script package for deploying PHP projects to a shared hosting server via 
+FTP or FTPS. It allows you to synchronize directories or upload individual files using `lftp` and `curl`.
 
 ## Author
 
@@ -22,32 +23,37 @@ Ensure that `lftp`, `curl`, and `composer` are installed and accessible in your 
 
 ## Installation
 
-You can install this package via Composer by adding the following configuration to your `composer.json` file:
+You can install this package via Composer by running these commands at the root of your project:
+
+```bash
+composer config minimum-stability dev # not sure if it's a must
+composer config repositories.deploy-via-ftp vcs git@github.com:dgvirtual/deploy-via-ftp.git
+composer require dgvirtual/deploy-via-ftp:dev-master
+```
+
+This will install the `deploy-via-ftp` package from your GitHub repository and make the 
+deployment script available in your project.
+
+Then you will be able to run the deploy script via command:
+
+```bash
+./vendor/dgvirtual/deploy-via-ftp/src/deploy.sh [options]
+```
+
+You can also add an entry to your project's composer.json scripts section:
 
 ```json
-{
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/dgvirtual/deploy-via-ftp"
-        }
-    ],
-    "require": {
-        "dgvirtual/deploy-via-ftp": "dev-master"
-    },
     "scripts": {
         "deploy": "./vendor/dgvirtual/deploy-via-ftp/src/deploy.sh"
     }
-}
 ```
 
-Then, run the following command in your project directory:
+to be able to run the script more conveniently as
 
 ```bash
-composer install
+composer deploy [options]
 ```
 
-This will install the `deploy-via-ftp` package from your GitHub repository and make the deployment script available in your project.
 
 ## Usage
 

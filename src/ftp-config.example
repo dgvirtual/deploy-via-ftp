@@ -17,7 +17,7 @@ REMOTE_PUBLIC_HTML="/public_html"
 # options for excluding files/directories from sync; things that rarely
 # change, should not be in production, or that should be updated manually
 APP_EXCLUDE_GLOBS=""
-VENDOR_EXCLUDE_GLOBS=""
+VENDOR_EXCLUDE_GLOBS="--exclude-glob='dgvirtual/deploy-via-ftp/*'"
 PUBLIC_EXCLUDE_GLOBS="--exclude-glob='uploads/*' --exclude-glob='index.php'"
 # Local directories
 LOCAL_APP="app"
