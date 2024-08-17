@@ -7,7 +7,7 @@ if [[ -f ./.ftp_config ]]; then
 fi
 
 # Copy the example config file to .ftp_config
-cp ftp-config.example .ftp_config
+cp ./vendor/dgvirtual/deploy-via-ftp/src/ftp-config.example .ftp_config
 echo ".ftp_config file created from ftp-config.example."
 
 # Ask the user if they want to add .ftp_config to .gitignore
