@@ -136,7 +136,7 @@ Edit this file with your FTP credentials and paths as needed.
 
 ## Notes
 
-- The script assumes that your project follows a structure where directories like `app`, `vendor`, and `public_html` are located in the base directory.
+- The script assumes that your project follows a structure where directories like `app`, `vendor`, and `public_html` are located in the base directory, while the server you deploy to places `app` and `vendor` inside `myproject` directory, which, along with `public_html`, is at the root of the directory structure accessible to ftp.
 - Make sure to review the exclusion patterns in the `.ftp_config` file and adjust them to suit your project.
 
 If you have any issues or need further assistance, feel free to contact the author at [dg@lapas.info](mailto:dg@lapas.info).
