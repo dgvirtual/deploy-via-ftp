@@ -19,6 +19,22 @@ source ./.ftp_config
 # Base directory (where the script is executed)
 BASE_DIR="$(pwd)"
 
+# Initialize dry run flag
+dry_run=""
+
+# Process arguments
+args=()
+for arg in "$@"; do
+  case "$arg" in
+    dry-run)
+      dry_run="--dry-run"
+      ;;
+    *)
+      args+=("$arg")
+      ;;
+  esac
+done
+
 # Function to synchronize a directory using lftp
 sync_dir() {
   local local_dir="$1"
@@ -32,6 +48,13 @@ sync_dir() {
   fi
   echo "Synchronizing directory: '$full_local_path' to '$remote_dir'"
 
+  # Add --dry-run to mirror command if dry_run flag is set
+  local dry_run_option=""
+  if [[ "$dry_run" == "--dry-run" ]]; then
+    dry_run_option="--dry-run"
+    echo "Performing dry-run (no real changes will be made)"
+  fi
+
   if [[ "$PROTOCOL" == "ftps" ]]; then
     lftp -f "
     set ftp:ssl-force true
@@ -39,7 +62,7 @@ sync_dir() {
     open $SERVER
     user $USERNAME $PASSWORD
     lcd $BASE_DIR
-    mirror -c --continue --reverse --delete --verbose $excludes $local_dir $remote_dir
+    mirror -c --continue --reverse --delete --verbose $dry_run_option $excludes $local_dir $remote_dir
     bye
     "
   else
@@ -47,7 +70,7 @@ sync_dir() {
     open $SERVER
     user $USERNAME $PASSWORD
     lcd $BASE_DIR
-    mirror -c --continue --reverse --delete --verbose $excludes $local_dir $remote_dir
+    mirror -c --continue --reverse --delete --verbose $dry_run_option $excludes $local_dir $remote_dir
     bye
     "
   fi
@@ -98,17 +121,19 @@ upload_single_file() {
     exit 1
   fi
 }
+
 # Check for arguments and call the appropriate function
-if [[ $# -eq 0 ]]; then
-  echo "Usage: $0 (app|vendor|public)"
+if [[ ${#args[@]} -eq 0 ]]; then
+  echo "Usage: $0 (app|vendor|public) [dry-run]"
   echo    "or: $0 onefile [local_path]"
-  
+  echo
   echo "  app: Synchronize app directory only."
   echo "  vendor: Synchronize vendor directory only."
   echo "  public: Synchronize public_html directory only."
   echo "  The above arguments can be used together,"
   echo "  e.g.:"
   echo "  ./deploy.sh app vendor"
+  echo "  dry-run: Perform a trial run with no changes made."
   echo "  onefile [local_path]: Upload a single file using curl."
   echo "  e.g.:"
   echo "  ./deploy.sh onefile app/Controllers/Test.php"
@@ -116,7 +141,7 @@ if [[ $# -eq 0 ]]; then
 fi
 
 # Process each argument provided to the script
-for target in "$@"; do
+for target in "${args[@]}"; do
   case $target in
     app)
       echo 'Syncing app folder...'
@@ -135,12 +160,12 @@ for target in "$@"; do
       sync_dir "$LOCAL_PUBLIC_HTML" "$REMOTE_PUBLIC_HTML" "$PUBLIC_EXCLUDE_GLOBS"
       ;;
     onefile)
-      if [[ $# -lt 2 ]]; then
+      if [[ ${#args[@]} -lt 2 ]]; then
         echo "Usage: $0 onefile [local_path]"
         exit 1
       fi
       echo 'Uploading single file...'
-      upload_single_file "$2"
+      upload_single_file "${args[1]}"
       shift # Move to the next argument (skip the file path)
       ;;
     *)

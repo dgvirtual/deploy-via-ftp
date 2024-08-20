@@ -65,6 +65,7 @@ You can use the following commands to synchronize directories with your remote F
 composer deploy app
 composer deploy vendor
 composer deploy public
+composer deploy public dry-run
 ```
 
 You can also combine multiple directories in a single command:
@@ -73,11 +74,12 @@ You can also combine multiple directories in a single command:
 composer deploy app vendor
 ```
 
-#### Available Arguments:
+#### Available Arguments
 
 - **app**: Synchronize the `app` directory only.
 - **vendor**: Synchronize the `vendor` directory only.
 - **public**: Synchronize the `public_html` directory only.
+- **dry-run**: Perform dry run (without changing content on the server).
 
 ### Uploading a Single File
 
