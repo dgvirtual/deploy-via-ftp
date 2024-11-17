@@ -10,7 +10,7 @@ PORT=21
 # server address (in case of ftps should be the same that
 # the ssl certificate is issued for)
 SERVER="ftp.example.com"
-# Remote directories
+# Remote directories (NO TRAILING SLASH)
 REMOTE_APP="/myproject/app"
 REMOTE_VENDOR="/myproject/vendor"
 REMOTE_PUBLIC_HTML="/public_html"
@@ -19,7 +19,7 @@ REMOTE_PUBLIC_HTML="/public_html"
 APP_EXCLUDE_GLOBS=""
 VENDOR_EXCLUDE_GLOBS="--exclude-glob='dgvirtual/deploy-via-ftp/*'"
 PUBLIC_EXCLUDE_GLOBS="--exclude-glob='uploads/*' --exclude-glob='index.php'"
-# Local directories
+# Local directories (NO TRAILING SLASH)
 LOCAL_APP="app"
 LOCAL_VENDOR="vendor"
 LOCAL_PUBLIC_HTML="public"

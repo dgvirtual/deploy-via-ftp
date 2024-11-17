@@ -31,6 +31,10 @@ composer config repositories.deploy-via-ftp vcs git@github.com:dgvirtual/deploy-
 composer require dgvirtual/deploy-via-ftp:dev-master
 ```
 
+**Note**: although the project will not be used on the production server, it should be installed
+using `composer require` and not `require-dev`, as the app **removes** all dev-only packages before
+deploying `vendor` directory, and it should not remove itself.
+
 This will install the `deploy-via-ftp` package from your GitHub repository and make the 
 deployment script available in your project.
 
