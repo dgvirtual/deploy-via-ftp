@@ -12,14 +12,15 @@ FTP or FTPS. It allows you to synchronize directories or upload individual files
 
 This project has the following dependencies:
 
-- **lftp**: Used for synchronizing directories.
-- **curl**: Used for uploading individual files.
+- **bash**: Used to run the deployment script itself;
+- **lftp**: Used for synchronizing directories;
+- **curl**: Used for uploading individual files;
 - **composer**: Required for installing this package and updating the vendor directory before and after
 deployment.
 
 **Note**: The project has been tested on **Ubuntu 24.04 LTS**.
 
-Ensure that `lftp`, `curl`, and `composer` are installed and accessible in your system's `PATH`.
+Ensure that `bash`, `lftp`, `curl`, and `composer` are installed and accessible in your system's `PATH`.
 
 ## Installation
 
