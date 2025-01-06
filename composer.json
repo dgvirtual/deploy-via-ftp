@@ -2,9 +2,6 @@
     "name": "dgvirtual/deploy-via-ftp",
     "description": "Simple script package for deploying PHP projects to a shared hosting server via FTP or FTPS.",
     "license": "MIT",
-    "require": {
-        "dgvirtual/deploy-via-ftp": "dev-master"
-    },
     "repositories": [
         {
             "type": "vcs",
