@@ -27,8 +27,6 @@ Ensure that `bash`, `lftp`, `curl`, and `composer` are installed and accessible 
 You can install this package via Composer by running these commands at the root of your project:
 
 ```bash
-composer config minimum-stability dev # not sure if it's a must
-composer config repositories.deploy-via-ftp vcs git@github.com:dgvirtual/deploy-via-ftp.git
 composer require dgvirtual/deploy-via-ftp:dev-master
 ```
 
